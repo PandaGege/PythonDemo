@@ -7,12 +7,16 @@
 # ----------------------------------------------
 
 
+import os
 import logging
 import logging.config
 from process import func
 
 
-logging.config.fileConfig('./logging.conf')
+dirname = os.path.dirname(os.path.abspath(__file__))
+conf_path = os.path.join(dirname, './logging.conf')
+# defaults传入日志文件夹路径
+logging.config.fileConfig(conf_path, defaults={'dirname': dirname})
 logger = logging.getLogger('server')
 
 logging.info('root logger info log')
